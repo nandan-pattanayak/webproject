@@ -31,8 +31,11 @@ def new_search(request):
 			print(post_image_url)
 		else:
 			post_image_url="https://images.unsplash.com/photo-1516541196182-6bdb0516ed27?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-		
-		final_postings.append((post_title,post_url,post_image_url))
+		if post.find(class_='result-price'):
+			post_price=post.find(class_='result-price').text
+		else:
+			post_price='N-A'
+		final_postings.append((post_title,post_url,post_image_url,post_price))
 
 
 	records={'data':search,'final_postings':final_postings}
